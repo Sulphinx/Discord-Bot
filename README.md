@@ -41,6 +41,3 @@ npm i
 node commands.js # To deploy slash commands in all the servers the bot is in
 node index.js # To start the ticket-bot
 ```
-
-# Made with 💜 by BlackKnight683.
-# Code Inspired From [@Sayrix](https://github.com/Sayrix)
