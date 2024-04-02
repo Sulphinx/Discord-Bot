@@ -5,15 +5,15 @@ const {
   module.exports = {
     data: new SlashCommandBuilder()
       .setName('remove')
-      .setDescription('Remove someone from the ticket')
+      .setDescription('Fjern en person fra ticketen')
       .addUserOption(option =>
         option.setName('target')
-        .setDescription('Member to remove from the ticket')
+        .setDescription('Fjern en person fra ticketen')
         .setRequired(true)),
     async execute(interaction, client) {
       const chan = client.channels.cache.get(interaction.channelId);
       const user = interaction.options.getUser('target');
-      if (!interaction.member.roles.cache.find(r => r.id === client.config.roleSupport)) return interaction.reply({content: "You need to have the <@&" + client.config.roleSupport + "> role.", ephemeral: true})
+      if (!interaction.member.roles.cache.find(r => r.id === client.config.roleSupport)) return interaction.reply({content: "Du skal bruge rollen: <@&" + client.config.roleSupport + "> role.", ephemeral: true})
       if (chan.name.includes('ticket')) {
         chan.edit({
           permissionOverwrites: [{
@@ -31,12 +31,12 @@ const {
         ],
         }).then(async () => {
           interaction.reply({
-            content: `<@${user.id}> has been removed from the ticket!`
+            content: `<@${user.id}> Er blevet fjernet fra ticketen!`
           });
         });
       } else {
         interaction.reply({
-          content: 'You are not in a ticket channel!',
+          content: 'Du er ikke i en ticket kanal!',
           ephemeral: true
         });
       };

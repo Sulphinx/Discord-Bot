@@ -5,15 +5,15 @@ const {
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('add')
-    .setDescription('Add someone to the ticket')
+    .setDescription('Tilføj en person til ticketen')
     .addUserOption(option =>
       option.setName('target')
-        .setDescription('Member to add to the ticket')
+        .setDescription('Tilføj en person til ticketen')
         .setRequired(true)),
   async execute(interaction, client) {
     const chan = client.channels.cache.get(interaction.channelId);
     const user = interaction.options.getUser('target');
-    if (!interaction.member.roles.cache.find(r => r.id === client.config.roleSupport)) return interaction.reply({ content: "You need to have the <@&" + client.config.roleSupport + "> role.", ephemeral: true })
+    if (!interaction.member.roles.cache.find(r => r.id === client.config.roleSupport)) return interaction.reply({ content: "Du skal bruge rollen: <@&" + client.config.roleSupport + "> role.", ephemeral: true })
     if (chan.name.includes('ticket')) {
       chan.edit({
         permissionOverwrites: [{
@@ -31,12 +31,12 @@ module.exports = {
         ],
       }).then(async () => {
         interaction.reply({
-          content: `<@${user.id}> has been added to the ticket!`
+          content: `<@${user.id}> er blevet tilføjet til ticketen!`
         });
       });
     } else {
       interaction.reply({
-        content: 'You are not in a ticket channel!',
+        content: 'Du er ikke i en ticket kanal!',
         ephemeral: true
       });
     };

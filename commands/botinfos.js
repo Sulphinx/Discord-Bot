@@ -4,12 +4,12 @@ const {
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName('botinfo')
-    .setDescription('Gives the credits of the bot.'),
+    .setName('plexmarkedbot')
+    .setDescription('Kredit til udvikleren.'),
   async execute(interaction, client) {
     const embed = new client.discord.MessageEmbed()
       .setColor('6d6ee8')
-      .setDescription('Developed with the 💜 by `•OofyOofOof•#2018`\n\n[`Github`](https://github.com/blackknight683) | [`Twitch`](https://www.twitch.tv/oofydaoofer) | [`Discord`](https://discord.gg/S2GGa23) | [`Youtube`](https://youtube.com/c/BlackKnight683)')
+      .setDescription('Udviklet med Kærlighed af Sulphinx\n\n[`Github`](https://github.com/Sulphinx) | [`Twitch`](https://www.twitch.tv/sulphinx) | [`Discord`](https://discord.gg/bHfynCk8gc)')
       .setFooter(client.user.tag, client.user.avatarURL())
       .setTimestamp();
     await interaction.reply({
