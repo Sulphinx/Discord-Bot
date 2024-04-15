@@ -70,7 +70,7 @@ module.exports = {
 
         const collector = msg.createMessageComponentCollector({
           componentType: 'SELECT_MENU',
-          time: 20000 //20 seconds
+          time: 20000
         });
 
         collector.on('collect', async i => {
@@ -80,7 +80,6 @@ module.exports = {
                 const chosenCategory = i.values[0];
                 let categoryId;
           
-                // Find den ID for den valgte kategori
                 switch (chosenCategory) {
                   case client.config.Category1:
                     categoryId = client.config.Category1ID;
@@ -99,7 +98,7 @@ module.exports = {
                   return console.error("Ugyldig kategori valgt.");
                 }
         
-                // Find den åbne ticket-kanal for brugeren
+              
                 const ticketChannel = client.guilds.cache.get(interaction.guildId).channels.cache.find(c => c.type === 'GUILD_TEXT' && c.name.startsWith('ticket-') && c.topic === interaction.user.id);
                 if (!ticketChannel) {
                   return console.error("Kunne ikke finde brugerens ticket-kanal.");
@@ -129,11 +128,9 @@ module.exports = {
                   opened.channel.bulkDelete(1);
                 });
         
-                // Flyt den gamle kanal til den valgte kategori
                 ticketChannel.setParent(categoryId)
                   .then(updatedChannel => {
                     console.log(`Den gamle kanal blev flyttet til kategori ${updatedChannel.parent.name}.`);
-                    // Opdater tilladelserne for den gamle kanal
                     updatedChannel.permissionOverwrites.edit(interaction.user.id, {
                       SEND_MESSAGES: true,
                       VIEW_CHANNEL: true
@@ -264,13 +261,13 @@ module.exports = {
 
       const embed = new client.discord.MessageEmbed()
         .setAuthor({name: 'Ticket Logs', iconURL: 'https://i.imgur.com/ZOynpme.png'})
-        .setDescription(`📰 Logs for ticketen \`${chan.id}\` | Oprettet af <@!${chan.topic}> | Lukket af <@!${interaction.user.id}>\n\nLogs: [**Grundet GDPR er dette ikke muligt.**]`)
+        .setDescription(`📰 Logs for ticketen \`${chan.id}\` | Oprettet af <@!${chan.topic}> | Lukket af <@!${interaction.user.id}>\n\nLogs: [**Feature fjernet.**]`)
         .setColor('2f3136')
         .setTimestamp();
 
       const embed2 = new client.discord.MessageEmbed()
         .setAuthor({name: 'Ticket Logs', iconURL: 'https://i.imgur.com/ZOynpme.png'})
-        .setDescription(`📰 Logs for ticketen \`${chan.id}\`: [**Grundet GDPR er dette ikke muligt.**]`)
+        .setDescription(`📰 Logs for ticketen \`${chan.id}\`: [**Feature fjernet.**]`)
         .setColor('2f3136')
         .setTimestamp();
 
