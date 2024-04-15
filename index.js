@@ -24,7 +24,7 @@ for (const file of commandFiles) {
   commands.push(command.data.toJSON());
 }
 
-const rest = new REST({ version: '9' }).setToken(config.botToken); // Change to config.botToken
+const rest = new REST({ version: '9' }).setToken(config.botToken);
 
 (async () => {
   try {
@@ -81,4 +81,4 @@ client.on('interactionCreate', async interaction => {
   }
 });
 
-client.login(config.botToken); // Change to config.botToken
+client.login(config.botToken);
